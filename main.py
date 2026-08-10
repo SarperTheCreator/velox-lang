@@ -42,7 +42,6 @@ def lexer(code):
         value = match.group()
         
         if kind == 'STRING':
-            # Tırnak işaretlerini soyup temiz metni alıyoruz
             tokens.append(Token('STRING', value[1:-1]))
         elif kind == 'NUMBER':
             tokens.append(Token('NUMBER', int(value)))
@@ -231,7 +230,6 @@ class Interpreter:
             right = self.visit(node.right)
 
             if node.op == '+':
-                # Eğer taraflardan biri String ise metin birleştirme yap
                 if isinstance(left, str) or isinstance(right, str):
                     return str(left) + str(right)
                 return left + right
